@@ -1,0 +1,15 @@
+============== README Tema 1 IOCLA ================
+
+Incepem implementarea prin citirea expresiei si punerea valorii 0 in registrele eax,ecx si edx. In variabila negative_number vom avea mereu 0 sau 1 in functie ce numar se afla in expresie (0 pentru numere pozitive si 1 pentru numere negative).La inceput vom presupune ca numarul citit e pozitiv (0). Vom muta caracter cu caracter in dl cat timp caracterul mutat nu este terminatorul de sir (0).Ne vom deplasa in string folosind registrul ecx ca pe un contor ce creste la fiecare caracter mutat.Daca dam de terminatorul de sir vom merge la final.
+
+Vom introduce elementele ce reprezinta numere in stiva pana cand vom da de un semn (+,-,/,*).Daca dam de un semn, sarim la label-ul operation unde scoatem in functie de opertia necesara.Scoatem ultimele 2 elemente din stiva dupa care efectuam operatia ceruta,iar apoi introducem rezultatul inapoi in stiva si o luam de la capat in parcurgerea sirului expresie.In cazul impartirii,folosim cdq pentru impartirea unui numar negativ si a unuia pozitiv.Transferam bitul de semn registrului edx.
+
+In cazul semnului '-' vom verifica daca este un semn pentru operatia de scadere sau daca este pentru un numar negativ.Daca dupa el avem un spatiu sau terminatorul de sir vom sari la cazul in care e o operatie.
+
+Daca intampinam un numar negativ,negative_number va deveni 1 si vom avansa in parcurgerea sirului cu o pozitie.
+
+Mai departe vom contrui numarul necesar.Verificam daca prima cifra citita este intr-adevar o cifra , dupa care o vom transforma in numar (sub edx,'0').In ebx vom avea numarul de cifre al numarului gasit si il vom creste daca numarul este negativ ( va trebui sa sarim peste -). Vom verifica daca dam peste spatii dupa care, inmultim prima cifra gasita cu 10 apoi adaugam urmatoarea cifra gasita si incrementam ebx.Repetam procedeul pana cand intalnim un spatiu si tot numarul a fost construit.
+
+Dupa ce am construit numarul incrementam contorul pentru string cu numarul de cifre al elementului construit.Daca umarul este negativ,il negam si adunam 1.
+
+La final, elementul construit va fi in edx.Il introducem pe stiva si verificam daca nu am ajuns la finalul string-ului expresie. In final, scoatem ultimul element de pe stiva (adica rezultatul expresiei) si il afisam.
